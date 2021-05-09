@@ -84,3 +84,13 @@ void Texture::modulate(Uint8 red, Uint8 green, Uint8 blue) const
 {
   SDL_SetTextureColorMod(this->texture, red, green, blue);
 }
+
+void Texture::enable_alpha_blending()
+{
+  SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+}
+
+void Texture::set_alpha(uint8_t alpha)
+{
+  SDL_SetTextureAlphaMod(texture, alpha);
+}

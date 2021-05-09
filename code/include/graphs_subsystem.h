@@ -8,7 +8,7 @@
 class GraphsSubsystem
 {
  public:
-  GraphsSubsystem(SDL_Window* window);
+  explicit GraphsSubsystem(SDL_Window* window);
   ~GraphsSubsystem();
 
   GraphsSubsystem(const GraphsSubsystem&) = delete;

@@ -3,6 +3,8 @@
 #include "texture.h"
 #include "window_subsystem.h"
 #include "graphs_subsystem.h"
+#include "text_subsystem.h"
+#include "text.h"
 #include <string>
 #include <stdexcept>
 #include <iostream>
@@ -18,13 +20,17 @@ int main(int argc, char* args[])
   {
     WindowSubsystem window_subsystem(640, 480);
     GraphsSubsystem graphs_subsystem(window_subsystem.get_window());
+    TextSubsystem text_subsystem("W:\\simplex\\data\\VT323-Regular.ttf");
 
   
-    Texture background_texture = graphs_subsystem.load_texture("W:\\simplex\\data\\LAND2.bmp", 0, 0);
+    Texture background_texture = graphs_subsystem.load_texture("W:\\simplex\\data\\landscape.png", 0, 0);
     Scene scene(std::move(background_texture));
 
     Texture hero_texture = graphs_subsystem.load_texture("W:\\simplex\\data\\character1.png", 4, 3);
+    hero_texture.set_alpha(100);
     scene.create_sprite("hero"s, 50, 50, std::move(hero_texture));
+
+    // Text title(*text_subsystem.main_font(), renderer, "Mama y la Aranya", {0, 0, 0});
   
 
     bool quit = false;
