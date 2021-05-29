@@ -1,9 +1,9 @@
-
 #include <SDL.h>
 #include <stdio.h>
 #include "texture.h"
 #include "window_subsystem.h"
 #include "graphs_subsystem.h"
+#include "sound_subsystem.h"
 #include "text.h"
 #include <string>
 #include <stdexcept>
@@ -20,6 +20,7 @@ int main(int argc, char* args[])
   {
     WindowSubsystem window_subsystem(640, 480);
     GraphsSubsystem graphs_subsystem(window_subsystem.get_window(), "W:\\simplex\\data\\VT323-Regular.ttf");
+    SoundSubsystem sound_subsystem;
   
     Texture background_texture = graphs_subsystem.load_texture("W:\\simplex\\data\\landscape.png", 0, 0);
     Scene scene(std::move(background_texture));
@@ -31,6 +32,10 @@ int main(int argc, char* args[])
     Text title = graphs_subsystem.load_text("Mama y la Aranya", {0, 0, 0});
     scene.create_sprite("title"s, 100, 100, std::move(title));
   
+    Music music = sound_subsystem.load_music("W:\\simplex\\data\\Origami Repetika - Cloudy Footing.mp3");
+    music.play();
+
+
 
     bool quit = false;
     while (!quit)
